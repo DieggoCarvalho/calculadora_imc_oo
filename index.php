@@ -1,3 +1,24 @@
+<?php
+    require_once("app/Models/Usuario.php");
+
+    if ( !empty($_POST['nome']) &&  !empty($_POST['sexo']) && !empty($_POST['idade']) &&
+    !empty($_POST['peso']) && !empty($_POST['altura'])) {
+        //setando variáveis
+        $nome = $_POST['nome'];
+        $sexo = $_POST['sexo'];
+        $idade = $_POST['idade'];
+        $peso = $_POST['peso'];
+        $altura = $_POST['altura'];
+        $usuario = new Usuario($nome, $sexo, $idade, $peso, $altura);
+
+        // echo "<pre>".var_dump($usuario)."</pre>"; //mostrar o objeto criado se foi criado de fato
+        // var_dump($usuario);
+
+        $usuario->validarDados();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +32,8 @@
 
 <body class="bg-light p-5">
     <div class="container border border-2 rounded-4 p-4 bg-white mb-5" style="max-width: 600px;">
-        <form method="get">
+        <!--formulário-->
+        <form method="POST">
             <h1 class="mb-4 text-center">Calculadora IMC</h1>
             <div class="row">
                 <div class="mb-3">
